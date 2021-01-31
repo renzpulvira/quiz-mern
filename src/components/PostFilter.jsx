@@ -11,9 +11,12 @@ export default function PostFilter() {
 
   return (
     <div className="filters">
-      {filterData.forEach((x) => {
-        return <div>{filterData[x]}</div>;
-      })}
+      <span>Filters: </span>
+      <ul>
+        {filterData.map((x) => (
+          <li>#{x}</li>
+        ))}
+      </ul>
     </div>
   );
 }

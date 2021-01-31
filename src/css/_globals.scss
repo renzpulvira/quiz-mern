@@ -1,10 +1,19 @@
+.globalContainer {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.postsContainer {
+  width: 100%;
+  max-width: 649px;
+  margin: 0 auto;
+}
+
 .mainHeader {
   background: $fakeWhite;
 
   &__container {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
     height: 60px;
 
     display: flex;
@@ -61,5 +70,6 @@
     background: #333;
     border-radius: 50%;
     border: 1px solid #555;
+    margin-right: 0;
   }
 }

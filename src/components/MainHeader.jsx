@@ -10,7 +10,7 @@ function MainHeader() {
 
   return (
     <header className="mainHeader">
-      <div className="mainHeader__container">
+      <div className="mainHeader__container globalContainer">
         <div className="mainHeader__left">
           <Link to="/">
             <img src={Logo} alt="" />
