@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-  `mongodb+srv://renzuser:${process.env.DB_MONGO}@cluster0.yifph.mongodb.net/cluster0?retryWrites=true&w=majority`,
+  `mongodb+srv://renzuser:admin@cluster0.yifph.mongodb.net/cluster0?retryWrites=true&w=majority`,
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => (err ? console.log(err) : console.log("Connection Success!"))
 );
@@ -16,5 +16,7 @@ mongoose.connect(
 app.get("/", (req, res) => {
   res.send("Current page location: Homepage");
 });
+
+app.use("/auth", require("./routers/userRoutes"));
 
 app.listen(5000, console.log("Server Running in PORT: 5000"));
