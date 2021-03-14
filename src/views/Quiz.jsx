@@ -1,63 +1,52 @@
-import { findByDisplayValue } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
+import QuizTimer from "../components/QuizTimer";
+import QuizChoices from "../components/QuizChoices";
 
 export default function Quiz() {
-  const [isFinished, setIsFinished] = useState(false);
-  const [minutes, setMinutes] = useState(1);
-  const [seconds, setSeconds] = useState(3);
   const [isStarted, setIsStarted] = useState(false);
+  const [theText, setTheText] = useState("");
+  const [isResetTimer, setIsResetTimer] = useState(false);
+  const [quizSet, setQuizSet] = useState(0);
 
-  const callSetFinished = () => {
-    setIsFinished(true);
-  };
-
-  const callSetMinutesSeconds = (min, sec) => {
-    setMinutes(min);
-    setSeconds(sec);
-  };
-
-  const callSetSeconds = (sec) => {
-    setSeconds(sec);
-  };
-
-  let myTimer = null;
+  function methodSetIsStarted() {
+    setIsStarted(!isStarted);
+  }
 
   useEffect(() => {
-    if (isStarted) {
-      myTimer = setInterval(() => {
-        if (seconds > 0) {
-          callSetSeconds(seconds - 1);
-        }
-        if (seconds === 0) {
-          if (minutes === 0) {
-            callSetFinished();
-            clearInterval(myTimer);
-          } else {
-            // setMinutes(minutes - 1);
-            // setSeconds(3);
-            callSetMinutesSeconds(minutes - 1, 3);
-          }
-        }
-      }, 1000);
-
-      return () => {
-        clearInterval(myTimer);
-      };
-    }
-    if (!isStarted) {
-      clearInterval(myTimer);
-      myTimer = null;
-    }
-  });
+    methodSetIsStarted();
+  }, []);
 
   return (
     <div>
-      <p>Timer Status: {isFinished ? "Ended" : "In Progress"}</p>
-      <p>{minutes}</p>
-      <p>{seconds}</p>
-
-      <button onClick={() => setIsStarted(!isStarted)}>TOGGLE ON/OFF</button>
-      <p>{isStarted ? "ON" : "OFF"}</p>
+      <div className="timer-container">
+        <QuizTimer isStarted={isStarted} isReset={isResetTimer} />
+        {/* <button onClick={() => setIsStarted(!isStarted)}>TOGGLE ON/OFF</button> */}
+        <button onClick={() => setIsResetTimer(!isResetTimer)}>
+          Reset Timer
+        </button>
+        <QuizChoices quizSetCurrent={quizSet} />
+        <button onClick={() => setQuizSet(quizSet + 1)}>Skip</button>
+        {quizSet > 2 ? (
+          <button onClick={() => setQuizSet(0)}>Reset</button>
+        ) : (
+          <p>...</p>
+        )}
+        {/* <p>Question: </p>
+        <ul>
+          <li>
+            <button>Choice 1</button>
+          </li>
+          <li>
+            <button>Choice 2</button>
+          </li>
+          <li>
+            <button>Choice 3</button>
+          </li>
+          <li>
+            <button>Choice 4</button>
+          </li>
+        </ul> */}
+      </div>
     </div>
   );
 }

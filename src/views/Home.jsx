@@ -8,6 +8,7 @@ function Home() {
     <div className="Home">
       <MainHeader />
       <div className="postsContainer" style={{ marginTop: 75 + "px" }}>
+        aowiefjaowiejfoi
         <PostFilter />
         <Posts />
       </div>
