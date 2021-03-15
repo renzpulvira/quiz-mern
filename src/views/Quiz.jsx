@@ -18,34 +18,18 @@ export default function Quiz() {
 
   return (
     <div>
-      <div className="timer-container">
-        <QuizTimer isStarted={isStarted} isReset={isResetTimer} />
-        {/* <button onClick={() => setIsStarted(!isStarted)}>TOGGLE ON/OFF</button> */}
+      <div className="quiz-container">
+        {/* <QuizTimer isStarted={isStarted} isReset={isResetTimer} />
         <button onClick={() => setIsResetTimer(!isResetTimer)}>
           Reset Timer
-        </button>
-        <QuizChoices quizSetCurrent={quizSet} />
+        </button> */}
+        <QuizChoices quizSetCurrent={quizSet} methodQuizSet={setQuizSet} />
         <button onClick={() => setQuizSet(quizSet + 1)}>Skip</button>
         {quizSet > 2 ? (
           <button onClick={() => setQuizSet(0)}>Reset</button>
         ) : (
-          <p>...</p>
+          <></>
         )}
-        {/* <p>Question: </p>
-        <ul>
-          <li>
-            <button>Choice 1</button>
-          </li>
-          <li>
-            <button>Choice 2</button>
-          </li>
-          <li>
-            <button>Choice 3</button>
-          </li>
-          <li>
-            <button>Choice 4</button>
-          </li>
-        </ul> */}
       </div>
     </div>
   );
